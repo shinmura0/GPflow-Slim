@@ -142,7 +142,7 @@ class Parameter(object):
         vf_value = self.transform.backward(value)
         self.vf_val = tf.get_variable(self.instance_name,
                                       initializer=tf.cast(vf_value, settings.float_type),
-                                      trainable=True)#self.trainable)
+                                      trainable=self.trainable, reuse=True)
 
     @property
     def name(self):
