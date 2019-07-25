@@ -140,9 +140,10 @@ class Parameter(object):
 
         # init var
         vf_value = self.transform.backward(value)
-        self.vf_val = tf.get_variable(self.instance_name,
-                                      initializer=tf.cast(vf_value, settings.float_type),
-                                      trainable=self.trainable, reuse=True)
+        with tf.variable_scope("my_scope2", reuse=True):#add
+                self.vf_val = tf.get_variable(self.instance_name,
+                                              initializer=tf.cast(vf_value, settings.float_type),
+                                              trainable=self.trainable)
 
     @property
     def name(self):
